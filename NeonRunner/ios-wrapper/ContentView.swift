@@ -6,7 +6,6 @@ struct ContentView: View {
         GameWebView()
             .ignoresSafeArea()
             .statusBar(hidden: true)
-            .persistentSystemOverlays(.hidden)
     }
 }
 
