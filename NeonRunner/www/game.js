@@ -86,11 +86,25 @@ function burst(x, y, color, count, speed = 140, life = 0.5) {
 /* =========================================================
    Input: keyboard + touch joystick + fire button
    ========================================================= */
+<<<<<<< HEAD
 const input = { x: 0, y: 0 };
 
 const keys = {};
 window.addEventListener("keydown", (e) => { keys[e.code] = true; });
 window.addEventListener("keyup", (e) => { keys[e.code] = false; });
+=======
+const input = { x: 0, y: 0, firing: false };
+
+const keys = {};
+window.addEventListener("keydown", (e) => {
+  keys[e.code] = true;
+  if (e.code === "Space") input.firing = true;
+});
+window.addEventListener("keyup", (e) => {
+  keys[e.code] = false;
+  if (e.code === "Space") input.firing = false;
+});
+>>>>>>> 0ac8bfa5a756d999d89c34856144a0beb53fe8ec
 
 function keyboardVector() {
   let x = 0, y = 0;
@@ -148,6 +162,18 @@ joyZone.addEventListener("mousedown", (e) => { joyStart(e.clientX, e.clientY, "m
 window.addEventListener("mousemove", (e) => { if (joyId === "mouse") joyMove(e.clientX, e.clientY); });
 window.addEventListener("mouseup", () => { if (joyId === "mouse") joyEnd(); });
 
+<<<<<<< HEAD
+=======
+// Fire button
+const fireBtn = document.getElementById("fire-btn");
+const setFiring = (v) => (e) => { e.preventDefault(); input.firing = v; };
+fireBtn.addEventListener("touchstart", setFiring(true), { passive: false });
+fireBtn.addEventListener("touchend", setFiring(false), { passive: false });
+fireBtn.addEventListener("mousedown", setFiring(true));
+fireBtn.addEventListener("mouseup", setFiring(false));
+fireBtn.addEventListener("mouseleave", setFiring(false));
+
+>>>>>>> 0ac8bfa5a756d999d89c34856144a0beb53fe8ec
 /* =========================================================
    Entities
    ========================================================= */
@@ -243,9 +269,14 @@ class Player {
     if (this.rapidTimer > 0) this.rapidTimer -= dt;
     if (this.multiTimer > 0) this.multiTimer -= dt;
 
+<<<<<<< HEAD
     // Auto-fire, unlimited — always shooting as fast as the current fire rate allows.
     this.fireCooldown -= dt;
     if (this.fireCooldown <= 0) {
+=======
+    this.fireCooldown -= dt;
+    if (input.firing && this.fireCooldown <= 0) {
+>>>>>>> 0ac8bfa5a756d999d89c34856144a0beb53fe8ec
       this.shoot();
       this.fireCooldown = this.fireRate;
     }
