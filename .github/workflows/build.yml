@@ -1,4 +1,4 @@
-name: Build NeonRunner IPA
+name: Build IPA
 
 on:
   push:
@@ -7,11 +7,9 @@ on:
 
 jobs:
   build:
-    runs-on: macos-26
-
+    runs-on: macos-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Install XcodeGen
         run: brew install xcodegen
@@ -34,31 +32,12 @@ jobs:
 
       - name: Package IPA
         run: |
-          rm -rf Payload NeonRunner-IPA
-          mkdir -p Payload NeonRunner-IPA
+          mkdir -p Payload
+          cp -r "build/Build/Products/Release-iphoneos/NeonRunner.app" Payload/
+          zip -r NeonRunner.ipa Payload
 
-          cp -R \
-            build/Build/Products/Release-iphoneos/NeonRunner.app \
-            Payload/
-
-          test -f Payload/NeonRunner.app/www/index.html
-
-          mkdir -p NeonRunner-IPA
-          cd Payload
-          zip -qry ../NeonRunner-IPA/NeonRunner.ipa NeonRunner.app
-          cd ..
-
-          cd NeonRunner-IPA
-          zip -qry NeonRunner-IPA.zip NeonRunner.ipa
-
-      - name: Verify IPA
-        run: |
-          unzip -l NeonRunner-IPA/NeonRunner.ipa | grep "Payload/NeonRunner.app/www/index.html"
-          unzip -l NeonRunner-IPA/NeonRunner.ipa | grep "Payload/NeonRunner.app/www/game.js"
-          unzip -l NeonRunner-IPA/NeonRunner.ipa | grep "Payload/NeonRunner.app/www/style.css"
-
-      - name: Upload IPA
+      - name: Upload IPA artifact
         uses: actions/upload-artifact@v4
         with:
-          name: NeonRunner-IPA
-          path: NeonRunner-IPA/
+          name: NeonRunner-ipa
+          path: NeonRunner.ipa

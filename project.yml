@@ -19,15 +19,19 @@ targets:
     resources:
       - path: NeonRunner/www
         type: folder
+      - path: NeonRunner/Assets.xcassets
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.cloudtst.NeonRunner
+        GENERATE_INFOPLIST_FILE: YES
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS: YES
         INFOPLIST_KEY_CFBundleDisplayName: NeonRunner
         INFOPLIST_KEY_UIStatusBarHidden: YES
         INFOPLIST_KEY_UIRequiresFullScreen: YES
         INFOPLIST_KEY_UISupportedInterfaceOrientations:
           - UIInterfaceOrientationLandscapeLeft
           - UIInterfaceOrientationLandscapeRight
-        INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad:
+        "INFOPLIST_KEY_UISupportedInterfaceOrientations~ipad":
           - UIInterfaceOrientationLandscapeLeft
           - UIInterfaceOrientationLandscapeRight
