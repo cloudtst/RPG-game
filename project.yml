@@ -1,0 +1,33 @@
+name: NeonRunner
+
+options:
+  bundleIdPrefix: com.cloudtst
+  deploymentTarget:
+    iOS: "15.0"
+
+settings:
+  base:
+    SWIFT_VERSION: 5.0
+    TARGETED_DEVICE_FAMILY: "1,2"
+
+targets:
+  NeonRunner:
+    type: application
+    platform: iOS
+    sources:
+      - NeonRunner/ios-wrapper
+    resources:
+      - path: NeonRunner/www
+        type: folder
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.cloudtst.NeonRunner
+        INFOPLIST_KEY_CFBundleDisplayName: NeonRunner
+        INFOPLIST_KEY_UIStatusBarHidden: YES
+        INFOPLIST_KEY_UIRequiresFullScreen: YES
+        INFOPLIST_KEY_UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad:
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight

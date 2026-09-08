@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>Neon Runner</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="game-container">
+  <canvas id="game-canvas"></canvas>
+
+  <!-- HUD -->
+  <div id="hud">
+    <div id="hud-score">SCORE 0</div>
+    <div id="hud-wave">WAVE 1</div>
+    <div id="hud-lives">
+      <span class="life" data-i="0"></span>
+      <span class="life" data-i="1"></span>
+      <span class="life" data-i="2"></span>
+    </div>
+    <button id="pause-btn" aria-label="Pause">II</button>
+  </div>
+
+  <!-- Touch controls -->
+  <div id="touch-controls">
+    <div id="joystick-zone">
+      <div id="joystick-base">
+        <div id="joystick-knob"></div>
+      </div>
+    </div>
+    <button id="fire-btn">FIRE</button>
+  </div>
+
+  <!-- Start screen -->
+  <div id="start-screen" class="overlay">
+    <h1>NEON RUNNER</h1>
+    <p class="subtitle">Dodge. Blast. Survive the waves.</p>
+    <button id="start-btn" class="big-btn">START</button>
+    <div class="hint">Drag left side to move &middot; tap FIRE to shoot<br>
+    (Keyboard: Arrows/WASD to move, Space to fire)</div>
+    <div id="high-score-line"></div>
+  </div>
+
+  <!-- Pause screen -->
+  <div id="pause-screen" class="overlay hidden">
+    <h2>PAUSED</h2>
+    <button id="resume-btn" class="big-btn">RESUME</button>
+    <button id="restart-from-pause-btn" class="ghost-btn">RESTART</button>
+  </div>
+
+  <!-- Game over screen -->
+  <div id="gameover-screen" class="overlay hidden">
+    <h2>GAME OVER</h2>
+    <div id="final-score"></div>
+    <div id="best-score"></div>
+    <button id="restart-btn" class="big-btn">PLAY AGAIN</button>
+  </div>
+
+  <!-- Level up / wave banner -->
+  <div id="wave-banner" class="hidden"></div>
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>
